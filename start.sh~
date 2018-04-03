@@ -1,7 +1,0 @@
-#!/bin/bash
-
-touch keep-running
-while [ -f keep-running ]
-do
-  ./infobot
-done
