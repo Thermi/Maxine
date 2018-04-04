@@ -579,9 +579,14 @@ Set a key/value pair in the database.
 
 use DBI;
 
-my $dsn = "DBI:mysql:database=maxine;host=mariadb";
+my host = $ENV{'MYSQL_HOST'};
+my username = $ENV{'MYSQL_USER'};
+my password = $ENV{'MYSQL_PASSWORD'};
+my database = $ENV{'MYSQL_DATABASE'};
+
+my $dsn = "DBI:mysql:database=$database;host=$host";
 my $dbh = DBI->connect($dsn,
-                       "maxine", "password",
+                       "$username", "$password",
 		       { RaiseError => 1 }
                       );
 
