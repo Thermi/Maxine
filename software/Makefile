@@ -19,7 +19,7 @@ CONFS=infobot.channels-dist infobot.config-dist infobot.help-dist \
 	sane-is.txt unittab.txt
 
 SOURCES=ANSI.pl CTCP.pl Channel.pl DBM.pl Extras.pl HandleURLs.pl \
-	Help.pl Irc.pl IrcExtras.pl IrcHooks.pl Misc.pl Norm.pl Params.pl \
+	Irc.pl IrcExtras.pl IrcHooks.pl Misc.pl Norm.pl Params.pl \
 	Process.pl Question.pl RDF.pl Reply.pl Search.pl Setup.pl Statement.pl \
 	Update.pl User.pl Util.pm
 
