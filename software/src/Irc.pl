@@ -1,6 +1,6 @@
 # infobot :: Kevin Lenzo & Patrick Cole   (c) 1997
 
-use Socket;
+use IO::Socket::IP;
 
 # checks if Japanese messages should be converted to EUC upon
 # receipt.  This should only happen if a) Jcode is available, 
@@ -14,28 +14,9 @@ $no_japanese++ if ($@);
 
 sub srvConnect {
     my ($server, $port) = @_;
-    my ($iaddr, $paddr, $proto);
-    select(STDOUT);
-    $| = 1;
-
-    $iaddr  = inet_aton($server);
-    $ip_num = inet_ntoa($iaddr);
-    if (not $ip_num) {
-        die "can't get the address of $server ($ip_num)!\n";
-    }
-    &status("Connecting to port $port of server $server ($ip_num)...");
-    $paddr = sockaddr_in($port, $iaddr);
-    $proto = getprotobyname('tcp');
-    socket(SOCK, PF_INET, SOCK_STREAM, $proto) or die "socket failed: $!";
-    $sockaddr = 'S n a4 x8';
-    if ($param{'vhost_name'}) {
-        my $hostname = $param{'vhost_name'};
-        $this = pack($sockaddr, AF_INET,  0, inet_aton($hostname));
-        &status("trying to bind as $hostname"); 
-        bind(SOCK, $this) || die "bind: $!";
-    }
-    connect(SOCK, $paddr) or die "connect failed: $!";
-
+    my $SOCK = IO::Socket::IP->new(
+        PeerHost    =>  "$server",
+        PeerService =>  "$port") or die "Cannot construct socket for $server port $port - $@";
     &status(" connected.");
 }
 
