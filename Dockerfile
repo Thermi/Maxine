@@ -10,4 +10,4 @@ CMD ["/usr/local/bin/perl", "/opt/maxine/maxine"]
 
 RUN cpan -i DBI DBD::mysql
 # run as nobody
-UID 99
+USER 99
