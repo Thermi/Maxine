@@ -1,0 +1,8 @@
+[Unit]
+Description=Maxine IRC bot
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/docker run --name maxine --cpu-shares 128 --memory 512MB --memory-reservation 256M -ti -v /opt/maxine/conf/:/opt/maxine/conf/ --user 980:975 --network alpha --env-file=/etc/conf.d/maxine --ipc=private thermi/maxine:latest
+Restart=always
